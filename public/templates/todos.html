@@ -1,0 +1,20 @@
+<div ng-controller="TodosCtrl">
+	<br><input type="text" class="language-filter" ng-model="todoFilter" 
+					placeholder="Search Todos">
+	<h3 class="error-msg" ng-show="error"><br>{{ error }}<br></h3>
+	<ul class="todo-list" ng-repeat="todo in todos | filter:{description:todoFilter}">
+		<li ng-controller="TodoCtrl" ng-model="todo">
+			<h3>{{ todo.description }}</h3>
+			<h4 class="error-msg" ng-show="error"><br>{{ error }}<br></h4>
+			<label>
+				<input type="checkbox" ng-model="todo.done" 
+					ng-change="todo.toggleDone()"> Done
+			</label>
+			<label>
+				<input type="checkbox" ng-model="todo.starred" 
+					ng-change="string"> Starred
+			</label>
+			<p ng-show="todo.completedAt">Completed At: {{ todo.completedAt }}</p>
+		</li>
+	</ul>
+</div>

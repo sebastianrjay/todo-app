@@ -1,0 +1,13 @@
+main(ng-app="todo-app")
+  header(ng-include src="'/partials/_header.html'")
+  section.row
+    div.col-md-3.sidebar
+      a(href="/")
+        p.sidebar-option All Todos
+      a(href="incomplete")
+        p.sidebar-option Incomplete
+      a(href="starred")
+        p.sidebar-option Starred
+      a(href="done")
+        p.sidebar-option Done
+    div.col-md-9.content(ng-view)

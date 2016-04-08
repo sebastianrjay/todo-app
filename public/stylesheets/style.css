@@ -1,0 +1,119 @@
+body {
+  font: 14px "Helvetica", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#header {
+  color: #dd4b39;
+  font-size: 20px;
+  margin-left: 1.5em;
+}
+
+#header-container {
+  border-bottom: 1px solid #dcdcdc;
+  margin-bottom: 20px;
+  height: 60px;
+}
+
+#footer-text {
+  text-align: center;
+}
+
+.io-container {
+  margin-bottom: 0.5em;
+}
+
+.translation-input, .translated-text {
+  box-sizing: border-box;
+  font-size: 16px;
+  overflow-y: hidden;
+  overflow-x: auto;
+  padding: 0.5em 2em 2em 0.5em;
+  height: 148px;
+  width: 100%;
+}
+
+.translated-text {
+  background-color: #F1F1F1;
+}
+
+#sign-in-btn {
+  font-size: 1em;
+  height: 50%;
+}
+
+#sign-in-btn {
+  background: #4285f4;
+  border-radius: 2px;
+  font-weight: bold;
+}
+
+#sign-in-btn:hover {
+  cursor: default;
+}
+
+nav {
+  background-color: #F1F1F1;
+  font: 13px/27px Arial,sans-serif;
+  position: relative;
+  height: 60px;
+  width: 100%;
+  margin-left: 0!important;
+  margin-right: 0!important;
+  white-space: nowrap;
+}
+
+.left-container, .right-container {
+  height: 60px;
+  line-height: 58px;
+  overflow: hidden;
+  position: relative;
+  vertical-align: middle;
+  width: 152px;
+  z-index: 987;
+}
+
+.left-container {
+  float: left;
+}
+
+.left-container a:hover, .right-container a:hover {
+  text-decoration: none;
+}
+
+.right-container {
+  float: right;
+}
+
+#tutu-logo-helper, .left-buffer {
+  display: inline-block;
+  width: 15%;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.left-buffer {
+  width: 10%;
+}
+
+#tutu-logo {
+  height: 60px;
+  margin: auto;
+  vertical-align: middle;
+}
+
+i.glyphicon-th {
+  font-size: 1.4em;
+  vertical-align: middle;
+}
+
+#dropdown-btn {
+  opacity: 0.7;
+}
+
+#dropdown-btn:hover {
+  opacity: 1;
+}
