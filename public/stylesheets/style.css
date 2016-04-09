@@ -18,6 +18,30 @@ a {
   height: 60px;
 }
 
+.msg {
+  border-radius: 2px;
+  font-weight: bold;
+  max-width: 300px;
+  padding: 0px 15px 15px 15px;
+}
+
+.jade.msg {
+  margin-left: 70px;
+  padding: 10px;
+}
+
+.error {
+  background-color: #ffcccc;
+  border: 1px solid #990000;
+  color: #990000;
+}
+
+.success {
+  background-color: #ccffcc;
+  border: 1px solid #004d00;
+  color: #004d00;
+}
+
 .todo-app {
   padding-bottom: 30px;
 }
@@ -79,10 +103,6 @@ a {
   font-size: 1em;
   height: 50%;
   font-weight: bold;
-}
-
-#sign-in-btn:hover {
-  cursor: default;
 }
 
 nav {

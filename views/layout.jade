@@ -7,8 +7,7 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     if (error && error.length > 0)
-      br
-      h4.error-msg= error
+      h4.jade.error.msg= error
       br
 
     block content

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "seed": "node seeds.js",
     "start": "node ./bin/www",
     "test": "make test"
   },
@@ -19,6 +20,7 @@
     "jade": "^1.9.1",
     "mocha": "~1.14.0",
     "mongoose": "^4.4.1",
+    "mongoose-seed": "^0.1.5",
     "morgan": "^1.5.1",
     "passport": "^0.2.1",
     "passport-local": "^1.0.0",

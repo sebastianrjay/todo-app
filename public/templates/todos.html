@@ -1,22 +1,23 @@
 <section class="row todo-app">
 	<div ng-controller="TodosCtrl">
 		<div class="col-md-5">
-			<br><h2>Todos for {{ username }}:</h2><br>
+			<br><h2>Todos for {{ viewedUsername }}:</h2><br>
 
 			<input type="text" class="language-filter" ng-model="todoFilter" 
 				placeholder="Search Todos"><br><br>
 
-			<h3 class="error-msg" ng-show="error"><br>{{ error }}<br></h3>
+			<h3 class="success msg" ng-show="success"><br>{{ success }}<br></h3>
+			<h3 class="error msg" ng-show="error"><br>{{ error }}<br></h3>
 
 			<ul class="todo-list" ng-repeat="todo in todos | filter:{description:todoFilter}">
 				<li ng-controller="TodoCtrl" ng-model="todo">
-					<h4 class="error-msg" ng-show="error"><br>{{ error }}<br></h4>
+					<h4 class="error msg" ng-show="error"><br>{{ error }}<br></h4>
 
-					<h3 ng-click="todo.toggleEditable()" class="todo-description-static"
-						ng-show="!todo.editable">{{ todo.description }}</h3>
+					<h3 ng-click="todo.toggleDescriptionEditable()" class="todo-description-static"
+						ng-show="!todo.descriptionEditable">{{ todo.description }}</h3>
 
-					<form ng-show="todo.editable" class="todo-description-editable"
-						ng-submit="todo.update(); todo.toggleEditable()">
+					<form ng-show="todo.descriptionEditable" class="todo-description-editable"
+						ng-submit="todo.update(); todo.toggleDescriptionEditable()">
 						<input type="text" ng-model="todo.description" class="todo-description">
 					</form>
 
@@ -37,8 +38,10 @@
 
 		<div class="col-md-1"></div>
 
-		<div ng-controller="TodoCtrl" ng-model="todo" class="col-md-5">
-			<h4 class="error-msg" ng-show="error"><br>{{ error }}<br></h4>
+		<div ng-controller="TodoCtrl" ng-model="todo" class="col-md-5" 
+			ng-show="userCanEditAndSubmit">
+
+			<h4 class="error msg" ng-show="error"><br>{{ error }}<br></h4>
 
 			<h2>Create New Todo</h2><br>
 

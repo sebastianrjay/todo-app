@@ -15,8 +15,9 @@ block content
           p.sidebar-option Done
       .col-md-9.content(ng-view)
       script(type="text/javascript").
-        window.username = '#{username}';
-        window.rootPath = '/users/' + encodeURIComponent(username) + '/todos/';
+        window.loggedInUsername = '#{loggedInUsername}';
+        window.viewedUsername = '#{viewedUsername}';
+        window.rootPath = '/users/' + encodeURIComponent(viewedUsername) + '/todos/';
         document.write("<base href='" + rootPath + "' />");
       script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js')
       script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js')

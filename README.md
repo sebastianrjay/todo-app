@@ -10,21 +10,35 @@ passport-local and passport-local-mongoose.
 
 # Local Use Instructions
 
-To run the app locally, first install npm, MongoDB and the npm MongoDB driver.
-Then, open 2 separate tabs in the terminal. In the first tab, run 'mongod' to 
-start the MongoDB driver. In the second tab, run 'npm start' to start the NodeJS 
-on port 3000. The app can be accessed via 'localhost:3000' in your web browser.
+To run the app locally:
 
-Run 'make test' to run the Mongoose UserAccount model unit test. So far there 
-only two tests. I added one to ensure that unencrypted passwords cannot be read 
-from the database; it fails. I'm surprised that Mongoose allows unencrypted 
-passwords to be read from the database. 
+* First install npm, MongoDB and the npm MongoDB driver if not already installed.
+Be sure to add the npm, mongo, and mongod commands to your $PATH.
+* Run 'npm install'
+* Open a new terminal tab or window and run 'mongod' to start the MongoDB driver 
+and run the database. Leave this tab alone, and open a new tab in the root 
+directory of todo-app. Complete the remaining steps in the new tab.
+* Run 'npm run seed' to seed the database. Press CONTROL-C once the console 
+shows that two user accounts have been created.
+* Run 'npm start' to start the NodeJS server on port 3000. The app can be 
+accessed via 'localhost:3000' in your web browser.
 
-Heroku deployment and DB seed instructions coming soon...
+Go ahead and log in as a seed user, such as Joe (username: joe@gmail.com, 
+password: joeschmo) or User (username: user@gmail.com, password: usemenow).
 
-# Description
+# Testing
 
-Features:
+To run the tests:
+
+* First run 'mongod' from within the todo-app file tree, to start the database.
+* Open a new terminal window/tab and switch to the todo-app root directory. Run 
+'npm test' to run the Mongoose UserAccount model unit test.
+
+So far there only two tests. I added one to ensure that unencrypted passwords 
+cannot be read from the database; it fails. I'm surprised that Mongoose allows 
+unencrypted passwords to be read from the database, even in the dev environment. 
+
+# Features
 
 * User authentication in passport-local, passport-local-mongoose and mongoose 
 features a unique salt for each user document. Password data is automatically 

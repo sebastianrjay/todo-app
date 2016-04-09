@@ -14,15 +14,21 @@ router.get('/', function (req, res) {
 router.get('/users/:username/todos/:var(all|incomplete|starred|done)?', function(req, res) {
     if(!req.user) return res.redirect('/');
 
-    var username = decodeURIComponent(req.params.username);
+    var viewedUsername = decodeURIComponent(req.params.username);
+    var loggedInUsername = req.user.username;
 
-    UserAccount.findOne({ username: username }).exec(function(err, user) {
+    UserAccount.findOne({ username: viewedUsername }).exec(function(err, user) {
         if(err) {
             next(err);
         } else if(!user){
             return res.send("404 - Not Found");
         } else {
-            return res.render('app', { username: username });
+            var users = {
+                loggedInUsername: loggedInUsername,
+                viewedUsername: viewedUsername
+            };
+
+            return res.render('app', users);
         }
     });
 });

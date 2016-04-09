@@ -3,10 +3,6 @@ var Todo = require('../models/todo');
 var UserAccount = require('../models/user-account');
 var router = express.Router();
 
-function isReadAuthorized(req){
-  return req.user ? true : false;
-}
-
 function isWriteAuthorized(req) {
 	if(!req.user || decodeURIComponent(req.params.username) !== req.user.username) {
 		return false;
@@ -14,7 +10,7 @@ function isWriteAuthorized(req) {
 }
 
 router.get('/users/:username/todos', function(req, res, next) {
-	if(!isReadAuthorized(req)) return res.redirect('/');
+	if(!req.user) return res.redirect('/');
 	
 	var constraints = { username: decodeURIComponent(req.params.username) };
 
