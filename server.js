@@ -9,7 +9,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
 var mainRoutes = require('./routes/main');
-var todoRoutes = require('./routes/todos');
+var todosAPIRoutes = require('./routes/todos-api');
 var app = express();
 
 // view engine and static asset setup
@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // routes config
 app.use('/', mainRoutes);
-app.use('/api', todoRoutes);
+app.use('/api', todosAPIRoutes);
 
 // passport config
 var UserAccount = require('./models/user-account');

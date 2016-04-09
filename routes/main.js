@@ -5,29 +5,30 @@ var router = express.Router();
 
 router.get('/', function (req, res) {
     if(req.user) {
-        res.redirect('/users/' + encodeURIComponent(req.user.username) + '/todos');
+        res.redirect('/users/' + encodeURIComponent(req.user.username) + '/todos/all');
     } else {
-        res.render('index');
+        res.render('login');
     }
 });
 
-router.get('/users/:id/todos/:var(incomplete|starred|done)?', function(req, res) {
-    var username = decodeURIComponent(req.params.id);
-    if(!username) return res.send("500 - Internal Server Error");
+router.get('/users/:username/todos/:var(all|incomplete|starred|done)?', function(req, res) {
+    if(!req.user) return res.redirect('/');
 
-    UserAccount.find({ username: username }).exec(function(err, user) {
+    var username = decodeURIComponent(req.params.username);
+
+    UserAccount.findOne({ username: username }).exec(function(err, user) {
         if(err) {
             next(err);
-        } else if(user){
-            res.render('index', { username: username });
+        } else if(!user){
+            return res.send("404 - Not Found");
         } else {
-            res.send("500 - Internal Server Error");
+            return res.render('app', { username: username });
         }
     });
 });
 
 router.get('/register', function(req, res) {
-    res.render('register', { });
+    res.render('register');
 });
 
 router.post('/register', function(req, res) {

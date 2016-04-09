@@ -1,16 +1,24 @@
 extends layout
 
 block content
-  .container
-    h1 Register Page
-    p.lead Join today to start enjoying all of todo-app's groundbreaking services!
-    br
-    form(role='form', action="/register",method="post", style='max-width: 300px;')
-      .form-group
-          input.form-control(type='text', name="username", placeholder='Enter Username')
-      .form-group
-        input.form-control(type='password', name="password", placeholder='Password')
-      button.btn.btn-default(type='submit') Submit
-      &nbsp;
-      a(href='/')
-        button.btn.btn-primary(type="button") Cancel
+  .tutu-img
+    section.row
+      .container
+        h1 Register Page
+        h3.auth-slogan Join today to start enjoying all of todo-app's incredible services!
+        p.lead Already a member? #[a(href='/login') Sign in] now.
+        br
+        form(role='form', action="/register",method="post", style='max-width: 300px;')
+          .form-group
+              input.form-control(type='text', name="username", placeholder='Enter Username')
+          .form-group
+            input.form-control(type='password', name="password", placeholder='Password')
+          button.btn.btn-primary(type='submit') Submit
+          &nbsp;
+          a(href='/')
+            button.btn.btn-default(type="button") Cancel
+    section.row
+      .col-md-5
+      .col-md-6
+        h2#motto Not your average #[span#tutu-txt tutu] todo app!
+      .col-md-1

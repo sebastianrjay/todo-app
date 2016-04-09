@@ -1,20 +1,63 @@
-<div ng-controller="TodosCtrl">
-	<br><input type="text" class="language-filter" ng-model="todoFilter" 
-					placeholder="Search Todos">
-	<h3 class="error-msg" ng-show="error"><br>{{ error }}<br></h3>
-	<ul class="todo-list" ng-repeat="todo in todos | filter:{description:todoFilter}">
-		<li ng-controller="TodoCtrl" ng-model="todo">
-			<h3>{{ todo.description }}</h3>
+<section class="row todo-app">
+	<div ng-controller="TodosCtrl">
+		<div class="col-md-5">
+			<br><h2>Todos for {{ username }}:</h2><br>
+
+			<input type="text" class="language-filter" ng-model="todoFilter" 
+				placeholder="Search Todos"><br><br>
+
+			<h3 class="error-msg" ng-show="error"><br>{{ error }}<br></h3>
+
+			<ul class="todo-list" ng-repeat="todo in todos | filter:{description:todoFilter}">
+				<li ng-controller="TodoCtrl" ng-model="todo">
+					<h4 class="error-msg" ng-show="error"><br>{{ error }}<br></h4>
+
+					<h3 ng-click="todo.toggleEditable()" class="todo-description-static"
+						ng-show="!todo.editable">{{ todo.description }}</h3>
+
+					<form ng-show="todo.editable" class="todo-description-editable"
+						ng-submit="todo.update(); todo.toggleEditable()">
+						<input type="text" ng-model="todo.description" class="todo-description">
+					</form>
+
+					<label>
+						<input type="checkbox" ng-model="todo.done" 
+							ng-change="todo.update()"> Done
+					</label>
+
+					<label>
+						<input type="checkbox" ng-model="todo.starred" 
+							ng-change="todo.update()"> Starred
+					</label>
+
+					<p ng-show="todo.completedAt">Completed At: {{ todo.completedAt }}</p>
+				</li>
+			</ul>
+		</div>
+
+		<div class="col-md-1"></div>
+
+		<div ng-controller="TodoCtrl" ng-model="todo" class="col-md-5">
 			<h4 class="error-msg" ng-show="error"><br>{{ error }}<br></h4>
-			<label>
-				<input type="checkbox" ng-model="todo.done" 
-					ng-change="todo.toggleDone()"> Done
-			</label>
-			<label>
-				<input type="checkbox" ng-model="todo.starred" 
-					ng-change="string"> Starred
-			</label>
-			<p ng-show="todo.completedAt">Completed At: {{ todo.completedAt }}</p>
-		</li>
-	</ul>
-</div>
+
+			<h2>Create New Todo</h2><br>
+
+			<form ng-submit="todo.create()">
+		
+				<input type="text" ng-model="todo.description">
+
+				<label>
+					<input type="checkbox" ng-model="todo.done"> Done
+				</label>
+
+				<label>
+					<input type="checkbox" ng-model="todo.starred"> Starred
+				</label>
+
+				<button class=btn.btn-default type='submit'>Submit</button>
+			</form>
+		</div>
+	</div>
+
+	<div class="col-md-1"></div>
+</section>

@@ -18,36 +18,66 @@ a {
   height: 60px;
 }
 
+.todo-app {
+  padding-bottom: 30px;
+}
+
+.todo-description-editable {
+  font-size: 24px;
+  padding: 16px 0px 6px 0px;
+}
+
+.todo-description-static:hover {
+  cursor: pointer;
+}
+
+.todo-list > li {
+  list-style: none;
+  border: 1px solid gray;
+  border-radius: 3px;
+  margin-left: -38px;
+  max-width: 450px;
+  padding: 0 20px 15px 20px;
+}
+
+.tutu-img {
+  background: url('../images/tutu.png') center center;
+  background-size: cover;
+  background-attachment: fixed;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  min-height: 360px;
+  background-image: url('../images/tutu.png');
+  padding: 30px;
+}
+
+.auth-slogan {
+  max-width: 360px;
+}
+
+#motto {
+  -webkit-transform: rotate(-30deg);
+  -moz-transform: rotate(-30deg);
+  -ms-transform: rotate(-30deg);
+  -o-transform: rotate(-30deg);
+}
+
+#tutu-txt {
+  text-decoration: line-through;
+}
+
 #footer-text {
   text-align: center;
-}
-
-.io-container {
-  margin-bottom: 0.5em;
-}
-
-.translation-input, .translated-text {
-  box-sizing: border-box;
-  font-size: 16px;
-  overflow-y: hidden;
-  overflow-x: auto;
-  padding: 0.5em 2em 2em 0.5em;
-  height: 148px;
-  width: 100%;
-}
-
-.translated-text {
-  background-color: #F1F1F1;
-}
-
-#sign-in-btn {
-  font-size: 1em;
-  height: 50%;
 }
 
 #sign-in-btn {
   background: #4285f4;
   border-radius: 2px;
+  font-size: 1em;
+  height: 50%;
   font-weight: bold;
 }
 
@@ -88,32 +118,33 @@ nav {
   float: right;
 }
 
-#tutu-logo-helper, .left-buffer {
+.left-buffer {
   display: inline-block;
   width: 15%;
   height: 100%;
   vertical-align: middle;
+  width: 10%;
 }
 
-.left-buffer {
-  width: 10%;
+.sidebar {
+  font-size: 24px;
+  margin-left: 20px;
+  margin-right: -20px;
+  padding-top: 30px;
+}
+
+.sidebar > a {
+  text-decoration: none;
+}
+
+.sidebar-option {
+  border: 1px solid gray;
+  margin-right: 40px;
+  padding: 10px 40px;
 }
 
 #tutu-logo {
   height: 60px;
   margin: auto;
   vertical-align: middle;
-}
-
-i.glyphicon-th {
-  font-size: 1.4em;
-  vertical-align: middle;
-}
-
-#dropdown-btn {
-  opacity: 0.7;
-}
-
-#dropdown-btn:hover {
-  opacity: 1;
 }

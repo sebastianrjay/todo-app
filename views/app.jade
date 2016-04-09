@@ -1,13 +1,23 @@
-main(ng-app="todo-app")
-  header(ng-include src="'/partials/_header.html'")
-  section.row
-    div.col-md-3.sidebar
-      a(href="/")
-        p.sidebar-option All Todos
-      a(href="incomplete")
-        p.sidebar-option Incomplete
-      a(href="starred")
-        p.sidebar-option Starred
-      a(href="done")
-        p.sidebar-option Done
-    div.col-md-9.content(ng-view)
+extends layout
+
+block content
+  main(ng-app="todo-app")
+    header(ng-include src="'/partials/_header.html'")
+    section.row
+      .col-md-3.sidebar
+        a(href="all")
+          p.sidebar-option All Todos
+        a(href="incomplete")
+          p.sidebar-option Incomplete
+        a(href="starred")
+          p.sidebar-option Starred
+        a(href="done")
+          p.sidebar-option Done
+      .col-md-9.content(ng-view)
+      script(type="text/javascript").
+        window.username = '#{username}';
+        window.rootPath = '/users/' + encodeURIComponent(username) + '/todos/';
+        document.write("<base href='" + rootPath + "' />");
+      script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js')
+      script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js')
+      script(src='/javascripts/app.js')

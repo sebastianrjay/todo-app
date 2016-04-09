@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var UserAccount = require("../models/user-account.js");
 var db;
 
-describe('Account', function() {
+describe('UserAccount', function() {
 
     before(function(done) {
         db = mongoose.connect('mongodb://localhost/test');
@@ -16,22 +16,30 @@ describe('Account', function() {
     });
 
     beforeEach(function(done) {
-        var account = new UserAccount({
+        var userAccount = new UserAccount({
             username: '12345',
             password: 'testy'
         });
 
-        account.save(function(error) {
-            if (error) console.log('error' + error.message);
-            else console.log('no error');
+        userAccount.save(function(error) {
+            if (error) console.log('error ' + error.message + ' when saving userAccount');
+            else console.log('new test userAccount saved successfully');
             done();
         });
     });
 
     it('find a user by username', function(done) {
-        UserAccount.findOne({ username: '12345' }, function(err, account) {
-            account.username.should.eql('12345');
-            console.log("   username: ", account.username);
+        UserAccount.findOne({ username: '12345' }, function(err, userAccount) {
+            console.log("   username: ", userAccount.username);
+            userAccount.username.should.eql('12345');
+            done();
+        });
+    });
+
+    it('does not allow unencrypted passswords to be read from the database', function(done) {
+        UserAccount.findOne({ username: '12345' }, function(err, userAccount) {
+            console.log("   password: ", userAccount.password);
+            userAccount.password.should.not.eql('testy');
             done();
         });
     });
@@ -41,5 +49,4 @@ describe('Account', function() {
             done();
         });
      });
-
 });
