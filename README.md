@@ -57,4 +57,6 @@ that todo's completion date is reset to null.
 
 * Users can send each other links to view each other's todos. However, they must 
 be logged in to view other users' todos, and they cannot edit any todos besides 
-their own at the database level.
+their own at the database level. When viewing their own todos, they can click on 
+the orange tutu home icon in the upper left corner to return to viewing their 
+own todos.

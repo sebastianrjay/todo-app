@@ -41,6 +41,7 @@
 		<div ng-controller="TodoCtrl" ng-model="todo" class="col-md-5" 
 			ng-show="userCanEditAndSubmit">
 
+			<h4 class="success msg" ng-show="success"><br>{{ success }}<br></h4>
 			<h4 class="error msg" ng-show="error"><br>{{ error }}<br></h4>
 
 			<h2>Create New Todo</h2><br>
