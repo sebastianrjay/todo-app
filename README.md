@@ -14,6 +14,7 @@ To run the app locally:
 
 * First install npm, MongoDB and the npm MongoDB driver if not already installed.
 Be sure to add the npm, mongo, and mongod commands to your $PATH.
+* Clone this repository in the desired location.
 * Run 'npm install'
 * Open a new terminal tab or window and run 'mongod' to start the MongoDB driver 
 and run the database. Leave this tab alone, and open a new tab in the root 
