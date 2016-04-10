@@ -3,9 +3,9 @@
 var userCanEditAndSubmit = loggedInUsername === viewedUsername;
 
 angular.module('todo-app.todo-api-handler', [])
-  .service('todoFetcher', function($http) {
+  .service('todoService', function($http) {
     this.createTodo = function($scope, $rootScope) {
-      var todo = $scope.todo, todoFetcher = this;
+      var todo = $scope.todo, todoService = this;
       var queryString = '/api/users/' + encodeURIComponent(loggedInUsername) + 
         '/todos/?description=' + todo.description +  '&done=' + todo.done + 
         '&starred=' + todo.starred;
@@ -80,14 +80,14 @@ angular.module('todo-app.todo-api-handler', [])
   });
 
 angular.module('todo-app.todo-ctrl', ['todo-app.todo-api-handler'])
-	.controller('TodoCtrl', function($location, $rootScope, $scope, todoFetcher) {
+	.controller('TodoCtrl', function($location, $rootScope, $scope, todoService) {
     $scope.todo = $scope.todo || { description: '', done: false, starred: false};
     $scope.todo.descriptionEditable = false, $scope.error = '';
 
     $scope.userCanEditAndSubmit = userCanEditAndSubmit;
 
     $scope.todo.create = function() {
-      todoFetcher.createTodo($scope, $rootScope);
+      todoService.createTodo($scope, $rootScope);
     };
 
     $scope.todo.toggleDescriptionEditable = function() {
@@ -95,12 +95,12 @@ angular.module('todo-app.todo-ctrl', ['todo-app.todo-api-handler'])
     };
 
 		$scope.todo.update = function() {
-			todoFetcher.updateTodo($scope, $location.path().slice(1));
+			todoService.updateTodo($scope, $location.path().slice(1));
 		};
 	});
 
 angular.module('todo-app.todos-ctrl', ['todo-app.todo-api-handler'])
-	.controller('TodosCtrl', function($location, $rootScope, $scope, todoFetcher) {
+	.controller('TodosCtrl', function($location, $rootScope, $scope, todoService) {
     
     $scope.viewedUsername = window.viewedUsername;
     
@@ -111,10 +111,10 @@ angular.module('todo-app.todos-ctrl', ['todo-app.todo-api-handler'])
       window.rootPath = $location.path();
     }
 
-		todoFetcher.fetchTodos($scope, $location.path().slice(1));
+		todoService.fetchTodos($scope, $location.path().slice(1));
 
     $rootScope.$on('todoCreated', function(event) {
-      todoFetcher.fetchTodos($scope, $location.path().slice(1));
+      todoService.fetchTodos($scope, $location.path().slice(1));
     });
 	});
 

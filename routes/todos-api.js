@@ -26,7 +26,7 @@ router.get('/users/:username/todos', function(req, res, next) {
   		break;
   }
 
-  Todo.find(constraints).sort({ completedAt: 1 }).lean().exec(function(err, todos) {
+  Todo.find(constraints).sort({ done: 1, completedAt: -1 }).lean().exec(function(err, todos) {
 		if(err) {
 			var msg = "Could not find todos associated with user " + req.query.username;
 			res.send(JSON.stringify({ error: msg }));
