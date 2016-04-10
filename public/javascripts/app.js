@@ -80,7 +80,7 @@ angular.module('todo-app.todo-api-handler', [])
   });
 
 angular.module('todo-app.todo-ctrl', ['todo-app.todo-api-handler'])
-	.controller('TodoCtrl', function($rootScope, $scope, todoFetcher) {
+	.controller('TodoCtrl', function($location, $rootScope, $scope, todoFetcher) {
     $scope.todo = $scope.todo || { description: '', done: false, starred: false};
     $scope.todo.descriptionEditable = false, $scope.error = '';
 
