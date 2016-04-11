@@ -46,7 +46,16 @@ passport.serializeUser(UserAccount.serializeUser());
 passport.deserializeUser(UserAccount.deserializeUser());
 
 // mongoose
-mongoose.connect('mongodb://localhost/todo_app');
+var uriString = process.env.MONGOLAB_URI ||
+    process.env.MONGOHQ_URL || 'mongodb://localhost/todo_app';
+
+mongoose.connect(uriString, function (err, res) {
+      if (err) {
+      console.log ('ERROR connecting to: ' + uriString + '. ' + err);
+      } else {
+      console.log ('SUCCESS connecting to: ' + uriString);
+      }
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

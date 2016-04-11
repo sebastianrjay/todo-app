@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "deploy": "npm run seed; npm start",
     "seed": "node seeds.js",
     "start": "node ./bin/www",
     "test": "make test"

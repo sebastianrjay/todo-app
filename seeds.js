@@ -1,9 +1,13 @@
 var seeder = require('mongoose-seed');
 var UserAccount = require('./models/user-account');
 var Todo = require('./models/todo');
+var userAccountsCreated = 0;
 
 // Connect to MongoDB via Mongoose
-seeder.connect('mongodb://localhost/todo_app', function() {
+var uriString = process.env.MONGOLAB_URI ||
+    process.env.MONGOHQ_URL || 'mongodb://localhost/todo_app';
+
+seeder.connect(uriString, function() {
 
     // Load Mongoose models
     seeder.loadModels([
@@ -16,17 +20,21 @@ seeder.connect('mongodb://localhost/todo_app', function() {
 
         UserAccount.register(new UserAccount({ username: 'joe@gmail.com' }), 'joeschmo', function(err, userAccount) {
             if (err) {
-              console.log('Error when creating seed account joe@gmail.com.')
+              console.log('Error when creating seed account joe@gmail.com.');
             } else {
-                console.log('Seed user account joe@gmail.com successfully created.')
+                console.log('Seed user account joe@gmail.com successfully created.');
+                userAccountsCreated++;
+                if(userAccountsCreated === 2) process.exit();
             }
         });
 
         UserAccount.register(new UserAccount({ username: 'user@gmail.com' }), 'usemenow', function(err, userAccount) {
             if (err) {
-              console.log('Error when creating seed account user@gmail.com.')
+              console.log('Error when creating seed account user@gmail.com.');
             } else {
-                console.log('Seed user account user@gmail.com successfully created.')
+                console.log('Seed user account user@gmail.com successfully created.');
+                userAccountsCreated++;
+                if(userAccountsCreated === 2) process.exit();
             }
         });
 

@@ -1,0 +1,8 @@
+{
+  "name": "todo-app",
+  "description": "A basic todo app built with MongoDB, Mongoose, Express, Angular, Node, JADE and passport-local",
+  "repository": "https://github.com/sebastianrjay/todo-app",
+  "logo": "http://node-js-sample.herokuapp.com/node.svg",
+  "keywords": ["node", "express", "mongoose", "mongodb", "mongoose", "passport-local", "passport-local-express", "todo", "app", "todo app"],
+  "image": "heroku/nodejs"
+}
