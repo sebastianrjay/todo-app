@@ -97,12 +97,17 @@ a {
   text-align: center;
 }
 
-#sign-in-btn {
+.auth-btn {
   background: #4285f4;
   border-radius: 2px;
   font-size: 1em;
   height: 50%;
   font-weight: bold;
+}
+
+.auth-btn#cancel {
+  background: gray;
+  color: white;
 }
 
 nav {
@@ -167,4 +172,17 @@ nav {
   height: 60px;
   margin: auto;
   vertical-align: middle;
+}
+
+.splash-form {
+  display: inline-block;
+}
+
+#guest-btn {
+  background-color: green;
+  margin-left: -100px;
+}
+
+#guest-btn:hover {
+  background-color: rgb(0,102,0);
 }

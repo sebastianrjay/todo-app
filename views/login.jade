@@ -8,12 +8,16 @@ block content
         h3.auth-slogan Sign in to return to todo-app's groundbreaking services.
         p.lead Not a member? #[a(href='/register') Register] today!
         br
-        form(role='form', action="/login",method="post", style='max-width: 300px;')
+        form.splash-form(role='form', action="/login",method="post", style='max-width: 300px;')
           .form-group
               input.form-control(type='text', name="username", placeholder='Enter Username')
           .form-group
             input.form-control(type='password', name="password", placeholder='Password')
-          button.btn.btn-primary(type='submit') Submit
+          button.btn.btn-primary.auth-btn(type='submit') Sign In
+        form.splash-form(type='hidden' role='form', action="/login", method="post", style='max-width: 300px;')
+          input.form-control(type='hidden', name="username", value="guest")
+          input.form-control(type='hidden', name="password", value='guesstheguest')
+          button.btn.btn-primary.auth-btn#guest-btn(type='submit') Guest Login
     section.row
       .col-md-5
       .col-md-6
