@@ -21,7 +21,7 @@ router.get('/users/:username/todos/:var(all|incomplete|starred|done)?', function
         if(err) {
             next(err);
         } else if(!user){
-            return res.send("404 - Not Found");
+            return res.sendStatus(404);
         } else {
             var users = {
                 loggedInUsername: loggedInUsername,
@@ -68,10 +68,6 @@ router.get('/logout', function(req, res, next) {
 
         res.redirect('/');
     });
-});
-
-router.get('/ping', function(req, res){
-    res.status(200).send("pong!");
 });
 
 module.exports = router;

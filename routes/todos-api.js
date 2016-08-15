@@ -37,52 +37,48 @@ router.get('/users/:username/todos', function(req, res, next) {
 });
 
 router.patch('/users/:username/todos/:todo_id', function(req, res, next) {
-	if(!isWriteAuthorized(req)) return res.send("403 - Forbidden");
+	if(!isWriteAuthorized(req)) return res.sendStatus(403);
 
 	Todo.findById(decodeURIComponent(req.params.todo_id), function(err, todo) {
-			if(err) {
-				return next(err);
-			} else {
-				var done = todo.done, completedAt = todo.completedAt;
-				if(done !== JSON.parse(req.query.done)) {
-					done = JSON.parse(req.query.done);
-					completedAt = (done ? new Date() : null);
-				}
+		if(err) return next(err);
+		
+		var done = todo.done, completedAt = todo.completedAt;
+		if(done !== JSON.parse(req.query.done)) {
+			done = JSON.parse(req.query.done);
+			completedAt = (done ? new Date() : null);
+		}
 
-				todo.description = req.query.description;
-				todo.starred = JSON.parse(req.query.starred);
-				todo.done = done;
-				todo.completedAt = completedAt;
+		todo.description = req.query.description;
+		todo.starred = JSON.parse(req.query.starred);
+		todo.done = done;
+		todo.completedAt = completedAt;
 
-				todo.save(function (err) {
-			    if(err) return next(err);
+		todo.save(function (err) {
+	    if(err) return next(err);
 
-			    res.send(JSON.stringify({ todo: todo }));
-			  });
-			}
-		});
+	    res.json({ todo: todo });
+	  });
+	});
 });
 
 router.post('/users/:username/todos', function(req, res, next) {
-	if(!isWriteAuthorized(req)) return res.send("403 - Forbidden");
+	if(!isWriteAuthorized(req)) return res.sendStatus(403);
 
 	UserAccount.findOne({ username: req.user.username }, function(err, user) {
-		if(err) {
-			return next(err);
-		} else {
-			var params = {};
-			params.description = req.query.description;
-			params.username = req.user.username;
-			params.starred = JSON.parse(req.query.starred) || false;
-			params.done = JSON.parse(req.query.done) || false;
-			params.completedAt = (params.done ? new Date() : null);
+		if(err) return next(err);
+			
+		var params = {};
+		params.description = req.query.description;
+		params.username = req.user.username;
+		params.starred = JSON.parse(req.query.starred) || false;
+		params.done = JSON.parse(req.query.done) || false;
+		params.completedAt = (params.done ? new Date() : null);
 
-			Todo.create(params, function(err, todo) {
-				if(err) return next(err);
+		Todo.create(params, function(err, todo) {
+			if(err) return next(err);
 
-				res.send(JSON.stringify({ todo: todo }));				
-			});
-		}
+			res.send(JSON.stringify({ todo: todo }));				
+		});
 	});
 });
 
